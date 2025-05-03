@@ -241,7 +241,8 @@ button {
 }
 
 .btn2,
-.btn {
+.btn,
+.btn3 {
   border-radius: 10px;
   border: none;
   background-color: #d7efad;
@@ -283,6 +284,20 @@ button {
   margin-top: 50px;
 }
 
+.orderSuccess {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 100px;
+  color: rgb(39, 59, 65);
+}
+
+.successText {
+  font-size: 30px;
+}
 /* Footer */
 .container {
   display: flex;

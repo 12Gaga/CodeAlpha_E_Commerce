@@ -10,26 +10,32 @@ function createCardComponent(title, content, img) {
   return collection_item;
 }
 
+// New Collections
 const newCollection = document.querySelector(".new_collections");
 //fetch new collection data and put collections
-const collections = [
-  {
-    name: "SOFT LEATHER JACKETS",
-    description: "Stylish Autum Korea Fashion Jacket With Shoulder Pads",
-    img: "https://images.squarespace-cdn.com/content/v1/5fbc5eb54a8d08079f2cffbb/1702410133790-RBLY0F5Z64ZJMOU4DAMA/34D9B7D9-EB64-44F9-869B-FAAFF3DC93CE?format=1000w",
-  },
-  {
-    name: "FAUX LEATHER JACKETS",
-    description:
-      "Fully Lined, Button Front, Vented Sleeve -Chadwiks Timeless Classics",
-    img: "https://www.reitmans.com/on/demandware.static/-/Sites-Reitmans-catalog/default/dwf906d355/images/xlarge/reitmans_469980_1_0.jpg",
-  },
-];
-
-collections.forEach((item) => {
-  const cardItem = createCardComponent(item.name, item.description, item.img);
-  newCollection.append(cardItem);
-});
+let collections = [];
+async function callNewCollectionData() {
+  try {
+    const response = await fetch("http://localhost:3000/newCollections", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    console.log("data", data);
+    collections = [...data];
+    collections.forEach((item) => {
+      const cardItem = createCardComponent(
+        item.name,
+        item.description,
+        item.imgUrl
+      );
+      newCollection.append(cardItem);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+callNewCollectionData();
 
 //Avariable service
 const serviceTag = document.querySelector(".service");
@@ -101,51 +107,53 @@ reasons.forEach((reason) => {
 //New Arrivals
 const newArrivalTag = document.querySelector(".new_arrivals");
 //fetch arrival product and put arrivalItems
-const arrivalItems = [
-  {
-    img: "https://cdn.shopify.com/s/files/1/0478/8607/4024/files/Brown_Dress_Gold_Accessories.jpg?v=1668763698",
-    name: "Textured Solid Midi Dress",
-    price: "$50.00",
-  },
-  {
-    img: "https://cdn.shopify.com/s/files/1/0349/0270/4259/files/IMG-0802_410x.jpg?v=1743848875",
-    name: "Dahila Dress",
-    price: "$60.00",
-  },
-  {
-    img: "https://img-va.myshopline.com/image/store/1715339847991/2024-11-14-1934.jpeg?w=1440&h=2160&q=80",
-    name: "Liz Knotted Strap Maxi Dress",
-    price: "$75.00",
-  },
-];
-
-arrivalItems.forEach((item) => {
-  const arrivalDiv = createCardComponent(item.name, item.price, item.img);
-  newArrivalTag.append(arrivalDiv);
-});
+let arrivalItems = [];
+async function callNewArrivalData() {
+  try {
+    const response = await fetch("http://localhost:3000/newArrivals", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const arrivalData = await response.json();
+    console.log("data", arrivalData);
+    arrivalItems = [...arrivalData];
+    arrivalItems.forEach((item) => {
+      const arrivalDiv = createCardComponent(
+        item.name,
+        item.price,
+        item.imgUrl
+      );
+      newArrivalTag.append(arrivalDiv);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+callNewArrivalData();
 
 //Best selling item
 const bestSellingTag = document.querySelector(".best_selling");
 //fetch best selling product and put bestSellingItems
-const bestSellingItems = [
-  {
-    img: "https://rukminim2.flixcart.com/image/850/1000/xif0q/dress/o/y/l/xl-aa-00235-rust-aayu-original-imah26m8bmeznvns.jpeg?q=90&crop=false",
-    name: "Long Sleeve Solid Long Dress",
-    price: "$60.00",
-  },
-  {
-    img: "https://media3.newlookassets.com/i/newlook/899623627/womens/accessories/hats/brown-rib-chunky-knit-beanie-hat.jpg?strip=true&qlt=50&w=720",
-    name: "Brown Rib Chunky Knit Beanie Hat",
-    price: "$55.00",
-  },
-  {
-    img: "https://i5.walmartimages.com/asr/d3e1ce01-c124-4cce-b1ce-63cfd8e461c4.8eed601577a7c5b46d88c759e205d99c.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-    name: "Long Sleeve Round-Neck Solid Long Dress",
-    price: "$70.00",
-  },
-];
-
-bestSellingItems.forEach((item) => {
-  const bestSellingDiv = createCardComponent(item.name, item.price, item.img);
-  bestSellingTag.append(bestSellingDiv);
-});
+let bestSellingItems = [];
+async function callBestSellingData() {
+  try {
+    const response = await fetch("http://localhost:3000/bestSellingItems", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const bestSellingData = await response.json();
+    console.log("data", bestSellingData);
+    bestSellingItems = [...bestSellingData];
+    bestSellingItems.forEach((item) => {
+      const bestSellingDiv = createCardComponent(
+        item.name,
+        item.price,
+        item.imgUrl
+      );
+      bestSellingTag.append(bestSellingDiv);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+callBestSellingData();
