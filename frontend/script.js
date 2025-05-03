@@ -1,4 +1,4 @@
-//function for card
+//function for card component
 function createCardComponent(title, content, img) {
   const collection_item = document.createElement("div");
   collection_item.className = "card";
