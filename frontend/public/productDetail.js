@@ -33,7 +33,11 @@ async function callAllData() {
     const btnTag = document.querySelector(".btn");
     console.log(btnTag);
     btnTag.addEventListener("click", () => {
-      cartArray.push({ ...selectedItem, qty: 1 });
+      cartArray.push({
+        ...selectedItem,
+        qty: 1,
+        finalPrice: selectedItem.price,
+      });
       localStorage.setItem("cartList", JSON.stringify(cartArray));
       window.location.replace("/E-commerce(Task-1)/frontend/public/shop.html");
       //localStorage.removeItem("cartList");

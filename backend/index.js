@@ -62,9 +62,9 @@ app.post("/orders", (req, res) => {
   const dataFromFrontend = req.body;
   const orderSeq = nanoid(5);
   const q =
-    'INSERT INTO orders ("productName", "productQty", "productPrice", "orderSeq") VALUES ($1, $2, $3, $4)';
+    'INSERT INTO orders ("productId", "productQty", "productPrice","productFinalPrice", "orderSeq") VALUES ($1, $2, $3, $4,$5)';
   const insertData = dataFromFrontend.map((item) =>
-    db.query(q, [item.name, item.qty, item.price, orderSeq])
+    db.query(q, [item.id, item.qty, item.price, item.finalPrice, orderSeq])
   );
   console.log(insertData);
   Promise.all(insertData)

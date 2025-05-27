@@ -1,3 +1,10 @@
+let cartArray = JSON.parse(localStorage.getItem("cartList")) || [];
+
+if (cartArray.length > 0) {
+  const cartNotice = document.querySelector(".haveCartItem");
+  cartNotice.style.display = "block";
+}
+
 //function for card component
 function createCardComponent(title, content, img) {
   const collection_item = document.createElement("div");
